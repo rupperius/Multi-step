@@ -1,0 +1,380 @@
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,400;0,500;1,700&display=swap');
+
+:root {
+/*  ### Primary */
+--Marine-blue: hsl(213, 96%, 18%);
+--Purplish-blue: hsl(243, 100%, 62%);
+--Pastel-blue: hsl(228, 100%, 84%);
+--Light-blue: hsl(206, 94%, 87%);
+--Strawberry-red: hsl(354, 84%, 57%);
+
+/* ### Neutral */
+--Cool-gray: hsl(231, 11%, 63%);
+--Light-gray: hsl(229, 24%, 87%);
+--Magnolia: hsl(217, 100%, 97%);
+--Alabaster: hsl(231, 100%, 99%);
+--White: hsl(0, 0%, 100%);
+}
+
+
+* {
+  box-sizing: border-box;  
+  font-family: 'Ubuntu', sans-serif;
+}	
+
+body {
+  background-color: #f5f5f5;
+  margin: 0;
+  padding: 0;
+  font-size: 16px;
+}
+
+.container {
+  margin: 4rem;
+  padding: 1rem;
+  width: 59rem;
+  height: 40rem;
+  margin-left: auto;
+  margin-right: auto;
+  background-color: var(--White);
+  border-radius: 10px;
+
+}
+
+.sidebar__steps {
+  position: absolute;
+  top: 6.2rem;
+  padding: 2rem;
+  color: var(--White);
+  width: 300px;
+}
+
+.sidebar__step {
+  height: 5rem;
+}
+
+.sidebar_number {
+  width: 2.5rem;
+  height: 2.5rem;
+  border: 2px solid var(--White);
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  
+}
+
+.active {
+  background-color: var(--Light-blue);
+  color: var(--Marine-blue);
+  border: none;
+}
+
+.sidebar__step__number, .sidebar__step__title {
+  position: relative;
+  top: -2.5rem;
+  left: 3rem;
+  height: 1.4rem;
+  text-transform: uppercase;
+}
+
+.sidebar__step__number{
+  color: var(--Cool-gray);
+}
+
+.forma {
+  position: relative;
+  top: -600px;
+  left: 300px;
+  width: 39rem;
+  height: 28rem;
+  padding: 1rem 1rem 1rem 5rem;
+  background-color: var(--White);
+  border-radius: 10px;
+
+}
+/* 
+#step1 {
+  display: none;
+} */
+
+#step2 {
+  display: none;
+}
+
+#step3 {
+  display: none;
+}
+
+#step4 {
+  display: none;
+}
+
+#step5 {
+  display: none;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;  
+  height: 100%;
+}
+
+.titel {
+  width: 25rem;
+  height: 6.9rem;
+}
+
+h1 {
+  padding-top: 1srem;
+  color: var(--Marine-blue);
+  margin-bottom: 1rem;
+}
+
+span {
+  color: var(--Cool-gray);
+}
+
+.fields {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding-top: 2rem;
+  gap: 2rem;
+}
+
+.field {
+  width: 100%;
+  height: 4rem;
+}
+
+.field label {
+  color: var(--Marine-blue);
+}
+
+.field input {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.boxs {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 3rem;
+  width: 33rem;
+  height: 10rem;
+  gap: 1rem;
+}
+
+.box {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 1rem;
+  width: 10rem;
+  height: 12rem;
+  border-radius: 10px;
+  border: 2px solid var(--Cool-gray);
+}
+
+.yearly__box {
+  height: 13rem;
+  border-radius: 10px;
+  
+}
+
+.box:hover {
+  border: 2px solid var(--Purplish-blue);
+  cursor: pointer;
+}
+
+
+
+.img__box {
+  width: 40px;
+  height: 40px;
+}
+
+.switch__container{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  margin-top: 2rem;
+  width: 100%;
+  height: 3rem;
+  background-color: var(--Magnolia);
+  border-radius: 10px;
+}
+
+.switch_btn {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+}
+
+.keypadCircle {
+  border-radius: 1rem;
+  background-color: var(--Marine-blue);
+  width: 2.9rem;
+  height: 1.2rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.keypadCircle button {
+  background-color: var(--White);
+  border: none;
+  width: .8rem;
+  height: .8rem;
+  border-radius: 50%;
+}
+
+#two {
+  opacity: 0;
+}
+
+
+ 
+.plan__text__color {
+  color: var(--Marine-blue);
+  font-weight: 700;
+}
+
+.addons__boxs{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 33rem;
+  height: 19rem;
+  gap: 1rem;
+}
+
+.addons__box {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  height: 6rem;
+  border: 2px solid var(--Cool-gray);
+  border-radius: 10px;
+}
+
+.addons__text {
+  width: 20rem;
+  height: 3rem;
+  line-height: .7rem;
+}
+
+.addons__text p {
+  margin-block-start: .5rem;
+  margin-block-end: .5rem;
+}
+
+.total__box {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  width: 33rem;
+  height: 6rem;
+  border-radius: 10px;
+  
+}
+
+.addons__selected{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  width: 33rem;
+  height: 3rem;
+}
+
+.total__box__active {
+  background-color: var(--Magnolia);
+}
+
+#total__box__plan {
+  border-radius: 10px 10px 0 0;
+}
+
+#total__box__addons{
+  flex-direction: column;
+  border-radius: 0 0 10px 10px;
+  border-top: 1px solid var(--Cool-gray);
+}
+
+.next {
+  position: absolute;
+  top: 33rem;
+  right: 17rem;
+  margin-top: 1px;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  width: 32rem;
+  height: 9rem;
+}
+
+.next1 {
+  justify-content: end;
+}
+
+.next__step {
+  height: 2.7rem;
+  width: 7rem;
+  padding: 12px 20px;
+  margin: 8px 0;
+  border: none;
+  border-radius: 4px;
+  background-color: var(--Marine-blue);
+  color: var(--White);
+  cursor: pointer;
+}
+
+.next__step:hover {
+  background-color: var(--Purplish-blue);
+}
+
+.go__back {
+  height: 2.7rem;
+  width: 7rem;
+  padding: 12px 20px;
+  margin: 8px 0;
+  border: none;
+  border-radius: 4px;
+  color: var(--Cool-gray);
+  cursor: pointer;
+}
+
+#thanks__box {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+}
+
+.titel__thanks {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+footer {
+  font-size: 11px; text-align: center; 
+}
+
+footer a { 
+  color: hsl(228, 45%, 44%); 
+}
