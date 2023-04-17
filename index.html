@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> <meta name="description" content="This is my solution for Multi-step form Challenge on https://www.frontendmentor.io/challenges">
+  <link rel="stylesheet" href="style.css">
+  <link rel="icon" type="image/png" sizes="32x32" href="./assets/images/favicon-32x32.png">
+  
+  <title>Frontend Mentor | Multi-step form</title>
+
+  
+</head>
+<body>
+
+  <!-- Sidebar start -->
+  <div class="container">
+    
+
+    <img class="bg-sidebar-desktop" src="./assets/images/bg-sidebar-desktop.svg" width="300px" height="594px" alt="Background sidebar"></img>
+    
+    <div class="sidebar__steps">
+      <div class="sidebar__step">
+        <div id="sidebar_number-1" class="sidebar_number active">
+          1
+        </div>
+        <div class="sidebar__step__number">
+          Step 1
+        </div>
+        <div class="sidebar__step__title">
+          Your info
+        </div>
+      </div>
+      <div class="sidebar__step">
+        <div id="sidebar_number-2" class="sidebar_number">
+          2
+        </div>
+        <div class="sidebar__step__number">
+          Step 2
+        </div>
+        <div class="sidebar__step__title">
+          Select plan
+        </div>
+      </div>
+      <div class="sidebar__step">
+        <div id="sidebar_number-3" class="sidebar_number">
+          3
+        </div>
+        <div class="sidebar__step__number">
+          Step 3
+        </div>
+        <div class="sidebar__step__title">
+          Add-ons
+        </div>
+      </div>
+      <div class="sidebar__step">
+        <div id="sidebar_number-4" class="sidebar_number ">
+          4
+        </div>
+        <div class="sidebar__step__number">
+          Step 4
+        </div>
+        <div class="sidebar__step__title">
+          Summary
+        </div>
+      </div>
+    </div>
+
+    
+
+    <div id="step1" class="forma">
+      <form  action="#">
+        <div class="titel">
+          <h1>Personal info</h1>
+          <span>Please provide your name, email address, and phone number.</span>
+        </div>
+
+        <div class="fields">
+          <div class="name field">
+            <label for="name">Name</label>
+            <input type="text" id="name" name="name" placeholder="e.g. Stephen King">
+          </div>
+
+          <div class="email field">
+            <label for="email">Email Address</label>
+            <input type="email" id="email" name="email" placeholder="e.g. stephenking@lorem.com">
+          </div>
+
+          <div class="phone field">
+            <label for="phone">Phone Number</label>
+            <input type="tel" id="phone" name="phone" placeholder="e.g. +1 234 567 890">
+          </div>
+        </div>
+      </form>
+
+        
+    </div>
+    <!-- Step 1 end -->
+
+
+
+
+    
+    <!-- Step 2 start -->
+    <div id="step2" class="forma">
+      <form  action="#">
+        <div class="titel">
+          <h1>Select your plan</h1>
+          <span>You have the option of monthly or yearly billing.</span>
+        </div>
+        <div class="boxs">
+          <div id="arcade__box" class="box">
+            <input id="arcade__input" name="prodId" type="hidden" value="9">
+            <img src="./assets/images/icon-arcade.svg" class="img__box" alt="" >
+            <div> 
+              <p class="box__title">Arcade</p>
+              <p id="arcade__prices" class="box__prices">$9/mo</p>
+            </div>
+          </div>
+          <div id="advanced__box" class="box">
+            <input id="advanced__input" name="prodId" type="hidden" value="12">
+            <img src="./assets/images/icon-advanced.svg" class="img__box" alt="" >
+            <div> 
+              <p class="box__title">Advanced</p>
+              <p  id="advanced__prices" class="box__prices">$12/mo</p>
+            </div>
+          </div>
+          <div id="pro__box" class="box">
+            <input id="pro__input" name="prodId" type="hidden" value="15">
+            <img src="./assets/images/icon-pro.svg" class="img__box" alt="">
+            <div> 
+              <p class="box__title">Pro</p>
+              <p id="pro__prices" class="box__prices">$15/mo</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="switch__container">
+          <div class="switch_btn">
+            <p id="one__monthly" class="plan__text__color">Monthly</p>
+            <div class="keypadCircle">
+              <button id="one" title="switch-to-Monthly"></button>
+              <button id="two" title="switch-to-Yearly"></button>
+            </div>  
+            <p id="two__yearly">Yearly</p>
+          </div>
+        </div>
+      </form>
+
+      
+    </div>
+
+  <!-- Step 2 end -->
+
+  <!-- Step 3 start -->
+
+    <div id="step3" class="forma">
+      <form  action="#">
+        <div class="titel">
+          <h1>Pick add-ons</h1>
+          <span> Add-ons help enhance your gaming experience.</span>
+        </div>
+        <div class="addons__boxs">
+          <div id="addons__os" class="addons__box">
+            <label for="checkbox">
+              <input type="checkbox" name="online_service" id="online__service">
+            </label>
+            <div class="addons__text">
+              <p> Online service</p>
+              <p>Access to multiplayer games</p>
+            </div>
+            <p id="ol__price" class="addons__price">$1/mo</p>
+          </div>
+
+          <div id="addons__ls" class="addons__box">
+            <label for="checkbox">
+              <input type="checkbox" name="larger__storage" id="larger__storage">
+            </label>
+            <div class="addons__text">
+              <p> Larger storage</p>
+              <p>Extra 1TB of cloud save</p>
+            </div>
+            <p id="ls__price" class="addons__price">+$2/mo</p>
+          </div>
+
+          <div id="addons__cp" class="addons__box">
+            <label for="checkbox">
+              <input type="checkbox" name="customizable__profile" id="customizable__profile">
+            </label>
+            <div class="addons__text">
+              <p> Customizable Profile</p>
+              <p>Custom theme on your profile</p>
+            </div>
+            <p id="cp__price" class="addons__price">+$2/mo</p>
+          </div>
+          
+
+        </div>
+      </form>
+
+
+
+    </div>
+
+  <!-- Step 3 end -->
+  <!-- Step 4 start -->
+
+    <div id="step4" class="forma">
+      <div class="total__selection">
+        <div class="titel">
+          <h1>Finishing up</h1>
+          <span>Double-check everything looks OK before confirming.</span>
+          <!-- Dynamically add subscription and add-on selections here -->
+        </div>
+        <div class="total__boxs">
+          <div id="total__box__plan" class="total__box total__box__active">
+            <p id="plan__name" class="plan__name">Arcade (Monthly) </p>
+            <p id="plan__prices" class="plan__prices">$9/mo</p>
+          </div>
+          <div id="total__box__addons" class="total__box total__box__active">
+            <div class="addons__selected">
+              <p>Online serivice</p>
+              <p>$1/mo</p>
+            </div>
+            <div class="addons__selected">
+              <p>Lager storage</p>
+              <p>$2/mo</p>
+            </div>
+          </div>
+          <div class="total__box">
+            <p> Total (per month)</p>
+            <p id="total__prices">$12/mo</p>
+          </div>
+        
+        
+          <div class="total">
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+  <!-- Step 4 end -->
+  <!-- Step 5 start -->
+        
+      <div id="step5" class="forma">
+        <div id="thanks__box">
+          <img id="img__thaks" src="./assets/images/icon-thank-you.svg" alt="">
+          <div class="titel titel__thanks">
+            <h1 id="tanks">Thank you!</h1>
+            <span>Thanks for confirming your subscription! We hope you have fun 
+              using our platform. If you ever need support, please feel free 
+              to email us at support@loremgaming.com.</span>
+          </div>
+        </div>
+      </div>
+
+  <!-- Step 5 end -->
+  <div class="next">
+    <button type="submit" id="go__back" class="go__back">Go Back</button>
+    <button type="submit" id="next__step" class="next__step">Next Step</button>
+  </div>
+
+
+  <footer  class="attribution">
+    Challenge by <a href="https://www.frontendmentor.io?ref=challenge" target="_blank">Frontend Mentor</a>. 
+    Coded by <a href="https://twitter.com/robertoblasoni">Roberto Blasoni</a>.
+  </footer>
+  <script src="./main.js"></script>
+</body>
+</html>
