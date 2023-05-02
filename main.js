@@ -42,7 +42,7 @@ let finishing__up = {
   plan: "Arcade",
   frequency: "(Monthly)",
   addons: [],
-  prices: 2,
+  prices: 0,
   addons__prices: 0,
 };
 
@@ -56,14 +56,6 @@ function sumary (finishing__up) {
   const addons__select = document.getElementById('addons__select');
  /*  const addons__selected = document.querySelectorAll('addons__selected'); */
 
- if (finishing__up.plan == "Arcade") {
-   finishing__up.frequency === "(Monthly)" ? finishing__up.prices = 9 : finishing__up.prices = 90;
- } else if (finishing__up.plan == "Advanced") {
-   finishing__up.frequency === "(Monthly)" ? finishing__up.prices = 12 : finishing__up.prices = 120;
- } else if (finishing__up.plan == "Pro") {
-   finishing__up.frequency === "(Monthly)" ? finishing__up.prices = 15 : finishing__up.prices = 150;
- };
-
   let addons__selected = document.createElement('p');
   addons__selected.setAttribute('class', 'addons__selected');
   console.log(addons__selected);
@@ -71,9 +63,20 @@ function sumary (finishing__up) {
   addons__selected.insertAdjacentText('beforeend', addon);
   addons__select.insertAdjacentElement('beforeend', addons__selected);
   
-  
+  plan__prices99();
   addons__prices99();
   });
+
+function plan__prices99 () {
+  if (finishing__up.plan == "Arcade") {
+    finishing__up.frequency === "(Monthly)" ? finishing__up.prices = 9 : finishing__up.prices = 90;
+  } else if (finishing__up.plan == "Advanced") {
+    finishing__up.frequency === "(Monthly)" ? finishing__up.prices = 12 : finishing__up.prices = 120;
+  } else if (finishing__up.plan == "Pro") {
+    finishing__up.frequency === "(Monthly)" ? finishing__up.prices = 15 : finishing__up.prices = 150;
+  };
+  console.log(this.plan__prices);
+}
 
 
 function addons__prices99 () {
@@ -106,8 +109,11 @@ function addons__prices99 () {
     } 
     addons__select.insertAdjacentElement('beforeend', addons__prices);
   }
-  console.log(this.addons__prices);
+ /*  console.log(this.addons__prices); */
 };
+
+
+
 
 
 
@@ -258,6 +264,9 @@ btn_back.addEventListener('click', () => {
   console.log(currentSidebarNumber);
   console.log(currentStep);
   (currentStep == 1) ? document.getElementById('go__back').style.display = "none" : null;  
+  if (currentStep == 3) { 
+    entfernen (); 
+  };
 });
 btn_next.addEventListener('click', () => {
   console.log(currentStep);
@@ -282,6 +291,14 @@ btn_next.addEventListener('click', () => {
   }
   
 });
+
+function entfernen() {
+  if (finishing__up.addons !== null) {
+    finishing__up.addons = [];
+  }
+};
+
+
 
 
 
