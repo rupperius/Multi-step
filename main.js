@@ -23,7 +23,6 @@ const addons__cp = document.getElementById('addons__cp');
 let currentStep = 1;
 let currentSidebarNumber = 1;
 
-let time;
 
 
 if(currentStep < 2) {
@@ -53,22 +52,93 @@ function sumary (finishing__up) {
   const plan__prices = document.getElementById('plan__prices');
   plan__name.innerHTML = `${finishing__up.plan} ${finishing__up.frequency}`;
   plan__prices.innerHTML = `${formatter.format(finishing__up.prices)}`;
- /*  const total__box__addons = document.getElementById('total__box__addons'); */
-  const addons__selected = document.querySelectorAll('addons__selected');
-  
-  if (finishing__up.plan == "Arcade") {
-    finishing__up.frequency === "(Monthly)" ? finishing__up.prices = 9 : finishing__up.prices = 90;
-  } else if (finishing__up.plan == "Advanced") {
-    finishing__up.frequency === "(Monthly)" ? finishing__up.prices = 12 : finishing__up.prices = 120;
-  } else if (finishing__up.plan == "Pro") {
-    finishing__up.frequency === "(Monthly)" ? finishing__up.prices = 15 : finishing__up.prices = 150;
-  };
+  const total__box__addons = document.getElementById('total__box__addons');
+  const addons__select = document.getElementById('addons__select');
+ /*  const addons__selected = document.querySelectorAll('addons__selected'); */
+
+ if (finishing__up.plan == "Arcade") {
+   finishing__up.frequency === "(Monthly)" ? finishing__up.prices = 9 : finishing__up.prices = 90;
+ } else if (finishing__up.plan == "Advanced") {
+   finishing__up.frequency === "(Monthly)" ? finishing__up.prices = 12 : finishing__up.prices = 120;
+ } else if (finishing__up.plan == "Pro") {
+   finishing__up.frequency === "(Monthly)" ? finishing__up.prices = 15 : finishing__up.prices = 150;
+ };
+
+  let addons__selected = document.createElement('p');
+  addons__selected.setAttribute('class', 'addons__selected');
   console.log(addons__selected);
+  finishing__up.addons.forEach((addon) => {
+  addons__selected.insertAdjacentText('beforeend', addon);
+  addons__select.insertAdjacentElement('beforeend', addons__selected);
   
+  
+  addons__prices99();
+  });
+
+
+function addons__prices99 () {
+  if (addons__selected.innerText
+    == 'online service') {
+    let addons__prices = document.createElement('p');
+    addons__prices.setAttribute('class', 'addons__prices');
+    if (finishing__up.frequency === "(Monthly)") {
+      addons__prices.innerHTML = `${formatter.format(5)}`;
+    } else { 
+      addons__prices.innerHTML = `${formatter.format(50)}`;
+    }
+    addons__select.insertAdjacentElement('beforeend', addons__prices);
+  } else if (addons__selected.innerText == "larger storage") {
+    let addons__prices = document.createElement('p');
+    addons__prices.setAttribute('class', 'addons__prices');
+    if (finishing__up.frequency === "(Monthly)") {
+      addons__prices.innerHTML = `${formatter.format(10)}`; 
+    } else {
+      addons__prices.innerHTML = `${formatter.format(100)}`;
+    }
+    addons__select.insertAdjacentElement('beforeend', addons__prices);
+  } else if (addons__selected.innerText == "customizable profile") {
+    let addons__prices = document.createElement('p');
+    addons__prices.setAttribute('class', 'addons__prices');
+    if (finishing__up.frequency === "(Monthly)") {
+      addons__prices.innerHTML = `${formatter.format(15)}`;
+    } else {
+      addons__prices.innerHTML = `${formatter.format(150)}`;
+    } 
+    addons__select.insertAdjacentElement('beforeend', addons__prices);
+  }
+  console.log(this.addons__prices);
+};
+
+
+
+
+
+
+
+ /* 
+if (finishing__up.addons.includes("Online Service")) {
+  finishing__up.frequency === "(Monthly)" ? finishing__up.addons__prices += 5 : finishing__up.addons__prices += 50;
+};
+if (finishing__up.addons.includes("Larger Storage")) {
+  finishing__up.frequency === "(Monthly)" ? finishing__up.addons__prices += 10 : finishing__up.addons__prices += 100;
+};
+if (finishing__up.addons.includes("Customizable Profile")) {
+  finishing__up.frequency === "(Monthly)" ? finishing__up.addons__prices += 15 : finishing__up.addons__prices += 150;
+}; */ 
+
+
+
+
+  
+ /*  addons__selected.classList.add('addons__selected'); */
+  
+
+  
+  /*   
   addons__selected.forEach((addon__selected) => {
     addon__selected.innerHTML = `${formatter.format(finishing__up.addons__prices)}`;
   });
-
+ */
 
 }
 
@@ -212,16 +282,7 @@ btn_next.addEventListener('click', () => {
   }
   
 });
-/* 
-if (finishing__up.addons.includes("Online Service")) {
-  finishing__up.frequency === "(Monthly)" ? finishing__up.addons__prices += 5 : finishing__up.addons__prices += 50;
-};
-if (finishing__up.addons.includes("Larger Storage")) {
-  finishing__up.frequency === "(Monthly)" ? finishing__up.addons__prices += 10 : finishing__up.addons__prices += 100;
-};
-if (finishing__up.addons.includes("Customizable Profile")) {
-  finishing__up.frequency === "(Monthly)" ? finishing__up.addons__prices += 15 : finishing__up.addons__prices += 150;
-}; */
+
 
 
 //addons  
