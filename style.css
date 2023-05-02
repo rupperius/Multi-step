@@ -200,6 +200,13 @@ span {
   background-color: var(--Magnolia);
 }
 
+.activ {
+  border: 2px solid var(--Purplish-blue);
+  background-color: var(--Magnolia);
+}
+
+
+
 
 .img__box {
   width: 40px;

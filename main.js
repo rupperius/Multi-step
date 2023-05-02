@@ -19,84 +19,11 @@ const addons__os = document.getElementById('addons__os');
 const addons__ls = document.getElementById('addons__ls');
 const addons__cp = document.getElementById('addons__cp');
 
-const Plans = { 
-  plan_arcade : {
-    monthly_plan: 9,
-    yearly_plan: 90,
-  },
-  plan_advanced : {
-    monthly_plan: 12,
-    yearly_plan: 120,
-  },
-  plan_pro : {
-    monthly_plan: 15,
-    yearly_plan: 150,
-  },  
-};
-
-const Addons = {
-  online_service : {
-  monthly_plan: 1,
-  yearly_plan: 10,
-  },
-  larger_storage : {
-  monthly_plan: 2,
-  yearly_plan: 20,
-  },
-  customizable_profile : {
-  monthly_plan: 2,
-  yearly_plan: 20,
-  }
-};
-
-let finishing__up = {
-  plan: "Arcade",
-  frequency: "(Monthly)",
-  addons: [
-    'online service', 'chichito'
-  ]
-};
-
-
-/* 
-if (finishing__up.addons.indexOf('online service') !== -1) {
-  console.log('lol');
-  let addons__to__delete = finishing__up.addons.indexOf('online service');
-  finishing__up.addons.splice(addons__to__delete, 1);
-  console.log(finishing__up);
-} 
-  */
-/* 
-let addons_plan = 'online service';
-
-function delette(addons_plan) {
-  if (finishing__up.addons.indexOf('online service') !== -1) {
-    console.log('lol');
-    let addons__to__delete = finishing__up.addons.indexOf('online service');
-    finishing__up.addons.splice(addons__to__delete, 1);
-    console.log(finishing__up);
-  } else {
-    console.log('no');
-  }
-
-}
-
-delette();
-
-console.log(finishing__up.addons);
- */
-
-const formatter = new Intl.NumberFormat('en-US', {
-  style: 'currency',
-  currency: "EUR",
-  minimumFractionDigits: 0,
-});
-
-console.log(formatter.format(2)); // $2
-
 
 let currentStep = 1;
 let currentSidebarNumber = 1;
+
+let time;
 
 
 if(currentStep < 2) {
@@ -108,26 +35,99 @@ if(currentStep < 2) {
 }
 
 
+
+
+
+// finish up (step 4)
+let finishing__up = {
+  plan: "Arcade",
+  frequency: "(Monthly)",
+  addons: [],
+  prices: 2,
+  addons__prices: 0,
+};
+
+function sumary (finishing__up) {
+  
+  const plan__name = document.getElementById('plan__name');
+  const plan__prices = document.getElementById('plan__prices');
+  plan__name.innerHTML = `${finishing__up.plan} ${finishing__up.frequency}`;
+  plan__prices.innerHTML = `${formatter.format(finishing__up.prices)}`;
+ /*  const total__box__addons = document.getElementById('total__box__addons'); */
+  const addons__selected = document.querySelectorAll('addons__selected');
+  
+  if (finishing__up.plan == "Arcade") {
+    finishing__up.frequency === "(Monthly)" ? finishing__up.prices = 9 : finishing__up.prices = 90;
+  } else if (finishing__up.plan == "Advanced") {
+    finishing__up.frequency === "(Monthly)" ? finishing__up.prices = 12 : finishing__up.prices = 120;
+  } else if (finishing__up.plan == "Pro") {
+    finishing__up.frequency === "(Monthly)" ? finishing__up.prices = 15 : finishing__up.prices = 150;
+  };
+  console.log(addons__selected);
+  
+  addons__selected.forEach((addon__selected) => {
+    addon__selected.innerHTML = `${formatter.format(finishing__up.addons__prices)}`;
+  });
+
+
+}
+
+
+
+
+
+
+
+
+
+// formato de moneda
+const formatter = new Intl.NumberFormat('en-US', {
+  style: 'currency',
+  currency: "USD",
+  minimumFractionDigits: 0,
+});
+
+console.log(formatter.format(2)); // $2
+
+
+
+
+
+
+// plans (step 2)
 arcade__box.addEventListener('click', () => {
   console.log('lol');
-  total__box__plan.innerHTML = `Arcade`;
+/*   total__box__plan.innerHTML = "Arcade"; */
   finishing__up.plan = "Arcade";
   console.log(finishing__up);
 });
 
 advanced__box.addEventListener('click', () => {
   console.log('lol');
-  total__box__plan.innerHTML = `Advanced`;
+/*   total__box__plan.innerHTML = "Advanced"; */
   finishing__up.plan = "Advanced";
   console.log(finishing__up);
 });
 
 pro__box.addEventListener('click', () => {
   console.log('lol');
-  total__box__plan.innerHTML = `Pro`;
+ /*  total__box__plan.innerHTML = "Pro"; */
   finishing__up.plan = "Pro";
   console.log(finishing__up);
 });
+
+
+
+document.querySelectorAll(".box").forEach((boxes) => {
+  boxes.addEventListener("click", activ__class);  
+});
+function activ__class() {
+  document.querySelectorAll(".box").forEach((boxes) => {
+    boxes.classList.remove("activ");
+  });
+  this.classList.add("activ");
+  console.log(this);  
+}; 
 
 
 
@@ -135,37 +135,7 @@ pro__box.addEventListener('click', () => {
 <br> ${formatter.format(finishing__up.plan_arcade.monthly_plan)}/mo`;*/
 
 
-
-btn_back.addEventListener('click', () => {
-  console.log(currentStep);
-  document.querySelector(`#sidebar_number-${currentSidebarNumber}`).classList.remove('active');
-  document.querySelector(`#step${currentStep}`).style.display = 'none';
-  currentStep--;
-  currentSidebarNumber--;
-  document.querySelector(`#sidebar_number-${currentSidebarNumber}`).classList.add('active');
-  document.querySelector(`#step${currentStep}`).style.display = 'flex';
-  console.log(currentSidebarNumber);
-  console.log(currentStep);
-  (currentStep == 1) ? document.getElementById('go__back').style.display = "none" : null;  
-});
-btn_next.addEventListener('click', () => {
-  console.log(currentStep);
-  document.querySelector(`#sidebar_number-${currentSidebarNumber}`).classList.remove('active');
-  document.querySelector(`#step${currentStep}`).style.display = 'none';
-  currentStep++;
-  document.querySelector(`#step${currentStep}`).style.display = 'flex';
-  currentSidebarNumber++;
-  if(currentSidebarNumber == 5) {
-    currentSidebarNumber = 4;
-  }
-  document.querySelector(`#sidebar_number-${currentSidebarNumber}`).classList.add('active');
-  console.log(currentStep);
-  console.log(currentSidebarNumber);
-  (currentStep == 2) ? document.getElementById('go__back').style.display = "" : null;
-  (currentStep == 5) ? document.querySelector('.next').style.display = "none" : null;  
-});
-
-
+// swicht monthly and yearly
 one.addEventListener('click', (e) => {
   e.preventDefault();
   one.style.opacity='1';
@@ -206,52 +176,111 @@ two.addEventListener('click', (e) => {
   finishing__up.frequency = "(Yearly)";
 });
 
-
-online__service.addEventListener('click', () => {
-  if (online__service.form[0].checked == true) {
-    addons__os.style.backgroundColor = "hsl(217, 100%, 97%)";
-    finishing__up.addons.push('online service');
-    console.log("lol+");
-    console.log(finishing__up);
-  } else {
-    if (finishing__up.addons.includes('online service')) {
-      finishing__up.addons.pop('online service');
-    }
-    console.log("lol-");
-    console.log(finishing__up);
-  }
+//Botones de addons (step 3)
+btn_back.addEventListener('click', () => {
+  console.log(currentStep);
+  document.querySelector(`#sidebar_number-${currentSidebarNumber}`).classList.remove('active');
+  document.querySelector(`#step${currentStep}`).style.display = 'none';
+  currentStep--;
+  currentSidebarNumber--;
+  document.querySelector(`#sidebar_number-${currentSidebarNumber}`).classList.add('active');
+  document.querySelector(`#step${currentStep}`).style.display = 'flex';
+  console.log(currentSidebarNumber);
+  console.log(currentStep);
+  (currentStep == 1) ? document.getElementById('go__back').style.display = "none" : null;  
 });
+btn_next.addEventListener('click', () => {
+  console.log(currentStep);
+  document.querySelector(`#sidebar_number-${currentSidebarNumber}`).classList.remove('active');
+  document.querySelector(`#step${currentStep}`).style.display = 'none';
+  currentStep++;
+  document.querySelector(`#step${currentStep}`).style.display = 'flex';
+  currentSidebarNumber++;
+  if(currentSidebarNumber == 5) {
+    currentSidebarNumber = 4;
+  }
+  document.querySelector(`#sidebar_number-${currentSidebarNumber}`).classList.add('active');
+  console.log(currentStep);
+  console.log(currentSidebarNumber);
+  if (currentStep == 2) {
+    document.getElementById('go__back').style.display = "";
+    document.querySelector('.next').classList.remove('next1');
+  } else if (currentStep == 4) {
+    sumary (finishing__up);
+  } else if (currentStep == 5) {
+    document.querySelector('.next').style.display = "none";
+  }
+  
+});
+/* 
+if (finishing__up.addons.includes("Online Service")) {
+  finishing__up.frequency === "(Monthly)" ? finishing__up.addons__prices += 5 : finishing__up.addons__prices += 50;
+};
+if (finishing__up.addons.includes("Larger Storage")) {
+  finishing__up.frequency === "(Monthly)" ? finishing__up.addons__prices += 10 : finishing__up.addons__prices += 100;
+};
+if (finishing__up.addons.includes("Customizable Profile")) {
+  finishing__up.frequency === "(Monthly)" ? finishing__up.addons__prices += 15 : finishing__up.addons__prices += 150;
+}; */
 
- 
+
+//addons  
 larger__storage.addEventListener('click', () => {
   if (larger__storage.form[0].checked == true) {
     addons__ls.style.backgroundColor = "hsl(217, 100%, 97%)";
     finishing__up.addons.push('larger storage');
+    finishing__up.frequency === "(Monthly)" ? finishing__up.addons__prices += 10 : finishing__up.addons__prices += 100;
     console.log("lol+larger storage");
     console.log(finishing__up);
   } else {
     if (finishing__up.addons.includes('larger storage')) {
-      finishing__up.addons.pop('larger storage');
+      finishing__up.addons.splice((finishing__up.addons.indexOf('larger storage')), 1);
     }
     console.log("lol-");
     console.log(finishing__up);
   }
 });
   
+
+online__service.addEventListener('click', () => {
+  if (online__service.form[0].checked == true) {
+    addons__os.style.backgroundColor = "hsl(217, 100%, 97%)";
+    finishing__up.addons.push('online service');
+    finishing__up.frequency === "(Monthly)" ? finishing__up.addons__prices += 5 : finishing__up.addons__prices += 50;
+    console.log("lol+");
+    console.log(finishing__up);
+  } else {
+    if (finishing__up.addons.includes('online service')) {
+      finishing__up.addons.splice((finishing__up.addons.indexOf('online service')), 1);
+      console.log("lol-");
+      console.log(finishing__up);
+    
+    }
+    
+  }
+});
+
 customizable__profile.addEventListener('click', () => {
   if (customizable__profile.form[0].checked == true) {
     addons__cp.style.backgroundColor = "hsl(217, 100%, 97%)";
     finishing__up.addons.push('customizable profile');
+    finishing__up.frequency === "(Monthly)" ? finishing__up.addons__prices += 15 : finishing__up.addons__prices += 150;
     console.log("lol+customizable__profile");
     console.log(finishing__up);
+
   } else {
-    if (finishing__up.addons.includes('customizable profile')) {
-      finishing__up.addons.pop('customizable profile');
-    }
+    if (customizable__profile.form[0].checked == false) {
+      if (finishing__up.addons.includes('customizable profile')) {
+        finishing__up.addons.splice(finishing__up.addons.indexOf('customizable profile'), 1);
+          
+      }
     console.log("lol-customizable__profile");
     console.log(finishing__up);
+    }
   }
 });
+
+
 
 
 
