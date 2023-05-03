@@ -44,6 +44,7 @@ let finishing__up = {
   addons: [],
   prices: 0,
   addons__prices: 0,
+  total__prices: 0,
 };
 
 function sumary (finishing__up) {
@@ -54,7 +55,7 @@ function sumary (finishing__up) {
   plan__prices.innerHTML = `${formatter.format(finishing__up.prices)}`;
   const total__box__addons = document.getElementById('total__box__addons');
   const addons__select = document.getElementById('addons__select');
- /*  const addons__selected = document.querySelectorAll('addons__selected'); */
+ 
 
   let addons__selected = document.createElement('p');
   addons__selected.setAttribute('class', 'addons__selected');
@@ -65,6 +66,7 @@ function sumary (finishing__up) {
   
   plan__prices99();
   addons__prices99();
+  prices__total();
   });
 
 function plan__prices99 () {
@@ -113,6 +115,13 @@ function addons__prices99 () {
 };
 
 
+function prices__total () {
+  const total__prices = document.getElementById('total__prices');
+  finishing__up.total__prices = finishing__up.addons__prices + finishing__up.prices;
+  total__prices.innerHTML = `${formatter.format(finishing__up.total__prices)}`;
+  console.log(finishing__up);
+
+}
 
 
 
