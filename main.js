@@ -23,146 +23,11 @@ const addons__cp = document.getElementById('addons__cp');
 let currentStep = 1;
 let currentSidebarNumber = 1;
 
+const plan__name = document.getElementById('plan__name');
+const plan__prices = document.getElementById('plan__prices');
 
-
-if(currentStep < 2) {
-  document.getElementById('go__back').style.display = "none";
-  document.querySelector('.next').classList.add('next1');
-} else {
-  document.getElementById('go__back').style.display = "";
-  document.querySelector('.next').classList.remove('next1');
-}
-
-
-
-
-
-// finish up (step 4)
-let finishing__up = {
-  plan: "Arcade",
-  frequency: "(Monthly)",
-  addons: [],
-  prices: 0,
-  addons__prices: 0,
-  total__prices: 0,
-};
-
-function sumary (finishing__up) {
-  
-  const plan__name = document.getElementById('plan__name');
-  const plan__prices = document.getElementById('plan__prices');
-  plan__name.innerHTML = `${finishing__up.plan} ${finishing__up.frequency}`;
-  plan__prices.innerHTML = `${formatter.format(finishing__up.prices)}`;
-  const total__box__addons = document.getElementById('total__box__addons');
-  const addons__select = document.getElementById('addons__select');
- 
-
-  let addons__selected = document.createElement('p');
-  addons__selected.setAttribute('class', 'addons__selected');
-  console.log(addons__selected);
-  finishing__up.addons.forEach((addon) => {
-  addons__selected.insertAdjacentText('beforeend', addon);
-  addons__select.insertAdjacentElement('beforeend', addons__selected);
-  
-  plan__prices99();
-  addons__prices99();
-  prices__total();
-  });
-
-function plan__prices99 () {
-  if (finishing__up.plan == "Arcade") {
-    finishing__up.frequency === "(Monthly)" ? finishing__up.prices = 9 : finishing__up.prices = 90;
-  } else if (finishing__up.plan == "Advanced") {
-    finishing__up.frequency === "(Monthly)" ? finishing__up.prices = 12 : finishing__up.prices = 120;
-  } else if (finishing__up.plan == "Pro") {
-    finishing__up.frequency === "(Monthly)" ? finishing__up.prices = 15 : finishing__up.prices = 150;
-  };
-  console.log(this.plan__prices);
-}
-
-
-function addons__prices99 () {
-  if (addons__selected.innerText
-    == 'online service') {
-    let addons__prices = document.createElement('p');
-    addons__prices.setAttribute('class', 'addons__prices');
-    if (finishing__up.frequency === "(Monthly)") {
-      addons__prices.innerHTML = `${formatter.format(5)}`;
-    } else { 
-      addons__prices.innerHTML = `${formatter.format(50)}`;
-    }
-    addons__select.insertAdjacentElement('beforeend', addons__prices);
-  } else if (addons__selected.innerText == "larger storage") {
-    let addons__prices = document.createElement('p');
-    addons__prices.setAttribute('class', 'addons__prices');
-    if (finishing__up.frequency === "(Monthly)") {
-      addons__prices.innerHTML = `${formatter.format(10)}`; 
-    } else {
-      addons__prices.innerHTML = `${formatter.format(100)}`;
-    }
-    addons__select.insertAdjacentElement('beforeend', addons__prices);
-  } else if (addons__selected.innerText == "customizable profile") {
-    let addons__prices = document.createElement('p');
-    addons__prices.setAttribute('class', 'addons__prices');
-    if (finishing__up.frequency === "(Monthly)") {
-      addons__prices.innerHTML = `${formatter.format(15)}`;
-    } else {
-      addons__prices.innerHTML = `${formatter.format(150)}`;
-    } 
-    addons__select.insertAdjacentElement('beforeend', addons__prices);
-  }
- /*  console.log(this.addons__prices); */
-};
-
-
-function prices__total () {
-  const total__prices = document.getElementById('total__prices');
-  finishing__up.total__prices = finishing__up.addons__prices + finishing__up.prices;
-  total__prices.innerHTML = `${formatter.format(finishing__up.total__prices)}`;
-  console.log(finishing__up);
-
-}
-
-
-
-
-
-
-
-
- /* 
-if (finishing__up.addons.includes("Online Service")) {
-  finishing__up.frequency === "(Monthly)" ? finishing__up.addons__prices += 5 : finishing__up.addons__prices += 50;
-};
-if (finishing__up.addons.includes("Larger Storage")) {
-  finishing__up.frequency === "(Monthly)" ? finishing__up.addons__prices += 10 : finishing__up.addons__prices += 100;
-};
-if (finishing__up.addons.includes("Customizable Profile")) {
-  finishing__up.frequency === "(Monthly)" ? finishing__up.addons__prices += 15 : finishing__up.addons__prices += 150;
-}; */ 
-
-
-
-
-  
- /*  addons__selected.classList.add('addons__selected'); */
-  
-
-  
-  /*   
-  addons__selected.forEach((addon__selected) => {
-    addon__selected.innerHTML = `${formatter.format(finishing__up.addons__prices)}`;
-  });
- */
-
-}
-
-
-
-
-
-
-
+const total__box__addons = document.getElementById('total__box__addons');
+const addons__select = document.getElementById('addons__select');
 
 
 // formato de moneda
@@ -172,96 +37,21 @@ const formatter = new Intl.NumberFormat('en-US', {
   minimumFractionDigits: 0,
 });
 
-console.log(formatter.format(2)); // $2
+function entfernen() {
+  if (finishing.finishing__up.addons !== null) {
+    finishing.finishing__up.addons = [];
+  }
+};
 
+// step 1
+if(currentStep < 2) {
+  document.getElementById('go__back').style.display = "none";
+  document.querySelector('.next').classList.add('next1');
+} else {
+  document.getElementById('go__back').style.display = "";
+  document.querySelector('.next').classList.remove('next1');
+};
 
-
-
-
-
-// plans (step 2)
-arcade__box.addEventListener('click', () => {
-  console.log('lol');
-/*   total__box__plan.innerHTML = "Arcade"; */
-  finishing__up.plan = "Arcade";
-  console.log(finishing__up);
-});
-
-advanced__box.addEventListener('click', () => {
-  console.log('lol');
-/*   total__box__plan.innerHTML = "Advanced"; */
-  finishing__up.plan = "Advanced";
-  console.log(finishing__up);
-});
-
-pro__box.addEventListener('click', () => {
-  console.log('lol');
- /*  total__box__plan.innerHTML = "Pro"; */
-  finishing__up.plan = "Pro";
-  console.log(finishing__up);
-});
-
-
-
-document.querySelectorAll(".box").forEach((boxes) => {
-  boxes.addEventListener("click", activ__class);  
-});
-function activ__class() {
-  document.querySelectorAll(".box").forEach((boxes) => {
-    boxes.classList.remove("activ");
-  });
-  this.classList.add("activ");
-  console.log(this);  
-}; 
-
-
-
-/* total__box__plan 
-<br> ${formatter.format(finishing__up.plan_arcade.monthly_plan)}/mo`;*/
-
-
-// swicht monthly and yearly
-one.addEventListener('click', (e) => {
-  e.preventDefault();
-  one.style.opacity='1';
-  two.style.opacity='0';
-  document.getElementById('one__monthly').classList.add('plan__text__color');
-  document.getElementById('two__yearly').classList.remove('plan__text__color');
-  box.forEach((boxs) => {
-    boxs.classList.remove('yearly__box');
-    });
-    document.getElementById('arcade__prices').textContent = "$9/mo";
-    document.getElementById('advanced__prices').textContent = "$12/mo";
-    document.getElementById('pro__prices').textContent = "$15/mo";
-
-    document.getElementById('ol__price').innerHTML = "$1/mo";
-    document.getElementById('ls__price').innerHTML = "$2/mo";
-    document.getElementById('cp__price').innerHTML = "$2/mo";
-    finishing__up.frequency = "(Monthly)";
-    
-});
-
-two.addEventListener('click', (e) => {
-  e.preventDefault();
-  one.style.opacity='0';
-  two.style.opacity='1';
-  document.getElementById('two__yearly').classList.add('plan__text__color');
-  document.getElementById('one__monthly').classList.remove('plan__text__color');
-  box.forEach((boxs) => {
-  boxs.classList.add('yearly__box');
-  });
-  document.getElementById('arcade__prices').innerHTML = "$90/yr <br> 2 months free";
-  document.getElementById('advanced__prices').innerHTML = "$120/yr<br> 2 months free";
-  document.getElementById('pro__prices').innerHTML = "$150/yr <br> 2 months free";
-  
-  document.getElementById('ol__price').innerHTML = "$10/yr";
-  document.getElementById('ls__price').innerHTML = "$20/yr";
-  document.getElementById('cp__price').innerHTML = "$20/yr";
-
-  finishing__up.frequency = "(Yearly)";
-});
-
-//Botones de addons (step 3)
 btn_back.addEventListener('click', () => {
   console.log(currentStep);
   document.querySelector(`#sidebar_number-${currentSidebarNumber}`).classList.remove('active');
@@ -294,80 +84,251 @@ btn_next.addEventListener('click', () => {
     document.getElementById('go__back').style.display = "";
     document.querySelector('.next').classList.remove('next1');
   } else if (currentStep == 4) {
-    sumary (finishing__up);
+    finishing.plan__show();
+    finishing.sumary();
+    finishing.plan__prices99();
+    finishing.prices__total();
+    console.log(finishing);
   } else if (currentStep == 5) {
     document.querySelector('.next').style.display = "none";
   }
   
 });
 
-function entfernen() {
-  if (finishing__up.addons !== null) {
-    finishing__up.addons = [];
+
+
+// plans (step 2)
+arcade__box.addEventListener('click', () => {
+  console.log('lol');
+/*   total__box__plan.innerHTML = "Arcade"; */
+  finishing.finishing__up.plan = "Arcade";
+  console.log(finishing);
+});
+
+advanced__box.addEventListener('click', () => {
+  console.log('lol');
+/*   total__box__plan.innerHTML = "Advanced"; */
+  finishing.finishing__up.plan = "Advanced";
+  console.log(finishing);
+});
+
+pro__box.addEventListener('click', () => {
+  console.log('lol');
+ /*  total__box__plan.innerHTML = "Pro"; */
+  finishing.finishing__up.plan = "Pro";
+  console.log(finishing);
+});
+
+document.querySelectorAll(".box").forEach((boxes) => {
+  boxes.addEventListener("click", activ__class);  
+});
+function activ__class() {
+  document.querySelectorAll(".box").forEach((boxes) => {
+    boxes.classList.remove("activ");
+  });
+  this.classList.add("activ");
+  console.log(this);  
+}; 
+
+// swicht monthly and yearly
+one.addEventListener('click', (e) => {
+  e.preventDefault();
+  one.style.opacity='1';
+  two.style.opacity='0';
+  document.getElementById('one__monthly').classList.add('plan__text__color');
+  document.getElementById('two__yearly').classList.remove('plan__text__color');
+  box.forEach((boxs) => {
+    boxs.classList.remove('yearly__box');
+    });
+    document.getElementById('arcade__prices').textContent = "$9/mo";
+    document.getElementById('advanced__prices').textContent = "$12/mo";
+    document.getElementById('pro__prices').textContent = "$15/mo";
+
+    document.getElementById('ol__price').innerHTML = "$1/mo";
+    document.getElementById('ls__price').innerHTML = "$2/mo";
+    document.getElementById('cp__price').innerHTML = "$2/mo";
+    finishing.finishing__up.frequency = "(Monthly)";
+    
+});
+
+two.addEventListener('click', (e) => {
+  e.preventDefault();
+  one.style.opacity='0';
+  two.style.opacity='1';
+  document.getElementById('two__yearly').classList.add('plan__text__color');
+  document.getElementById('one__monthly').classList.remove('plan__text__color');
+  box.forEach((boxs) => {
+  boxs.classList.add('yearly__box');
+  });
+  document.getElementById('arcade__prices').innerHTML = "$90/yr <br> 2 months free";
+  document.getElementById('advanced__prices').innerHTML = "$120/yr<br> 2 months free";
+  document.getElementById('pro__prices').innerHTML = "$150/yr <br> 2 months free";
+  
+  document.getElementById('ol__price').innerHTML = "$10/yr";
+  document.getElementById('ls__price').innerHTML = "$20/yr";
+  document.getElementById('cp__price').innerHTML = "$20/yr";
+
+  finishing.finishing__up.frequency = "(Yearly)";
+});
+
+//addons (step 3) 
+online__service.addEventListener('click', () => {
+  if (online__service.form[0].checked == true) {
+    addons__os.style.backgroundColor = "hsl(217, 100%, 97%)";
+    finishing.finishing__up.addons.push('online service');
+    finishing.finishing__up.frequency === "(Monthly)" ? finishing.finishing__up.addons__prices += 1 : finishing.finishing__up.addons__prices += 10;
+    console.log("lol+");
+    console.log(finishing);
+  } else {
+    if (finishing.finishing__up.addons.includes('online service')) {
+      finishing.finishing__up.addons.splice((finishing.finishing__up.addons.indexOf('online service')), 1);
+      console.log("lol-");
+      console.log(finishing);
+    
+    }
+    
   }
-};
+});
 
 
-
-
-
-//addons  
 larger__storage.addEventListener('click', () => {
   if (larger__storage.form[0].checked == true) {
     addons__ls.style.backgroundColor = "hsl(217, 100%, 97%)";
-    finishing__up.addons.push('larger storage');
-    finishing__up.frequency === "(Monthly)" ? finishing__up.addons__prices += 10 : finishing__up.addons__prices += 100;
+    finishing.finishing__up.addons.push('larger storage');
+    finishing.finishing__up.frequency === "(Monthly)" ? finishing.finishing__up.addons__prices += 1 : finishing.finishing__up.addons__prices += 10;
     console.log("lol+larger storage");
-    console.log(finishing__up);
+    console.log(finishing);
   } else {
-    if (finishing__up.addons.includes('larger storage')) {
-      finishing__up.addons.splice((finishing__up.addons.indexOf('larger storage')), 1);
+    if (finishing.finishing__up.addons.includes('larger storage')) {
+      finishing.finishing__up.addons.splice((finishing.finishing__up.addons.indexOf('larger storage')), 1);
     }
     console.log("lol-");
-    console.log(finishing__up);
+    console.log(finishing);
   }
 });
   
 
-online__service.addEventListener('click', () => {
-  if (online__service.form[0].checked == true) {
-    addons__os.style.backgroundColor = "hsl(217, 100%, 97%)";
-    finishing__up.addons.push('online service');
-    finishing__up.frequency === "(Monthly)" ? finishing__up.addons__prices += 5 : finishing__up.addons__prices += 50;
-    console.log("lol+");
-    console.log(finishing__up);
-  } else {
-    if (finishing__up.addons.includes('online service')) {
-      finishing__up.addons.splice((finishing__up.addons.indexOf('online service')), 1);
-      console.log("lol-");
-      console.log(finishing__up);
-    
-    }
-    
-  }
-});
 
 customizable__profile.addEventListener('click', () => {
   if (customizable__profile.form[0].checked == true) {
     addons__cp.style.backgroundColor = "hsl(217, 100%, 97%)";
-    finishing__up.addons.push('customizable profile');
-    finishing__up.frequency === "(Monthly)" ? finishing__up.addons__prices += 15 : finishing__up.addons__prices += 150;
+    finishing.finishing__up.addons.push('customizable profile');
+    finishing.finishing__up.frequency === "(Monthly)" ? finishing.finishing__up.addons__prices += 2 : finishing.finishing__up.addons__prices += 20;
     console.log("lol+customizable__profile");
-    console.log(finishing__up);
+    console.log(finishing);
 
   } else {
     if (customizable__profile.form[0].checked == false) {
-      if (finishing__up.addons.includes('customizable profile')) {
-        finishing__up.addons.splice(finishing__up.addons.indexOf('customizable profile'), 1);
+      if (finishing.finishing__up.addons.includes('customizable profile')) {
+        finishing.finishing__up.addons.splice(finishing.finishing__up.addons.indexOf('customizable profile'), 1);
           
       }
     console.log("lol-customizable__profile");
-    console.log(finishing__up);
+    console.log(finishing);
     }
   }
 });
 
+// finish up (step 4)
+const finishing = {
 
+  finishing__up: {
+   plan: "Arcade_",
+   frequency: "(Monthly)_",
+   addons: [],
+   prices: 0,
+   addons__prices: 0,
+   total__prices: 0,
+  },
+
+  plan__show () {
+    plan__name.innerHTML = `${this.finishing__up.plan} ${this.finishing__up.frequency}`;
+    plan__prices.innerHTML = `${formatter.format(this.finishing__up.prices)}`;
+    console.log(this.finishing__up.plan);
+  },  
+ 
+  sumary ( ) {
+    
+    this.finishing__up.addons.forEach((addon) => {
+      let addons__div = document.createElement('div');
+      addons__div.setAttribute('class', 'addons__div');
+      let addons__selected = document.createElement('div');
+      addons__selected.setAttribute('class', 'addons__selected');
+      console.log(addons__selected);
+      addons__selected.insertAdjacentElement('beforeend', addons__div);
+      addons__div.insertAdjacentText('beforeend', addon);
+      addons__select.insertAdjacentElement('beforeend', addons__selected);
+    
+
+      if (addons__selected.innerText
+        == 'online service') {
+        let addons__prices = document.createElement('p');
+        addons__prices.setAttribute('class', 'addons__prices');
+        if (this.finishing__up.frequency === "(Monthly)") {
+          addons__prices.innerHTML = `${formatter.format(1)}`;
+        } else { 
+          addons__prices.innerHTML = `${formatter.format(10)}`;
+        }
+        addons__selected.insertAdjacentElement('beforeend', addons__prices);
+        
+        } else if (addons__selected.innerText == "larger storage") {
+        let addons__prices = document.createElement('p');
+        addons__prices.setAttribute('class', 'addons__prices');
+        if (this.finishing__up.frequency === "(Monthly)") {
+          addons__prices.innerHTML = `${formatter.format(2)}`; 
+        } else {
+          addons__prices.innerHTML = `${formatter.format(20)}`;
+        }
+        addons__selected.insertAdjacentElement('beforeend', addons__prices);
+        
+        } else if (addons__selected.innerText == "customizable profile") {
+        let addons__prices = document.createElement('p');
+        addons__prices.setAttribute('class', 'addons__prices');
+        if (this.finishing__up.frequency === "(Monthly)") {
+          addons__prices.innerHTML = `${formatter.format(2)}`;
+        } else {
+          addons__prices.innerHTML = `${formatter.format(20)}`;
+        } 
+        addons__selected.insertAdjacentElement('beforeend', addons__prices);
+      }
+    });
+
+  },
+
+  plan__prices99 () {
+
+    if (this.finishing__up.plan == "Arcade") {
+      this.finishing__up.frequency === "(Monthly)" ? this.finishing__up.prices = 9 : this.finishing__up.prices = 90;
+    } else if (this.finishing__up.plan == "Advanced") {
+      this.finishing__up.frequency === "(Monthly)" ? this.finishing__up.prices = 12 : this.finishing__up.prices = 120;
+    } else if (this.finishing__up.plan == "Pro") {
+      this.finishing__up.frequency === "(Monthly)" ? this.finishing__up.prices = 15 : this.finishing__up.prices = 150;
+    };
+
+  },
+
+  prices__total () {
+    const total__prices = document.getElementById('total__prices');
+    const total__frequency = document.getElementById('total__frequency');
+    this.finishing__up.total__prices = this.finishing__up.addons__prices + this.finishing__up.prices;
+    total__prices.innerHTML = `${formatter.format(this.finishing__up.total__prices)}`;
+    this.finishing__up.frequency == "(Monthly)" ? total__frequency.innerHTML = `Total (per month)` : total__frequency.innerHTML = `Total (per year)`;
+    console.log(this.finishing__up.frequency);
+    
+  },
+
+      
+};
+ 
+ 
+finishing.plan__show();
+ finishing.sumary();
+ finishing.plan__prices99();
+ finishing.prices__total();
+ console.log(finishing);
+ 
+ 
+ 
 
 
 

@@ -311,11 +311,20 @@ span {
 
 .addons__select{
   display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  width: 33rem;
+}
+
+.addons__selected{
+  display: flex;
   flex-direction: row;
   justify-content: space-around;
   width: 33rem;
   height: 3rem;
 }
+
+
 
 .total__box__active {
   background-color: var(--Magnolia);
