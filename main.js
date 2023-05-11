@@ -29,6 +29,10 @@ const plan__prices = document.getElementById('plan__prices');
 const total__box__addons = document.getElementById('total__box__addons');
 const addons__select = document.getElementById('addons__select');
 
+const name__field = document.getElementById('name__field');
+const email = document.getElementById('email');
+const phone = document.getElementById('phone');
+
 
 // formato de moneda
 const formatter = new Intl.NumberFormat('en-US', {
@@ -44,13 +48,48 @@ function entfernen() {
 };
 
 // step 1
-if(currentStep < 2) {
-  document.getElementById('go__back').style.display = "none";
-  document.querySelector('.next').classList.add('next1');
-} else {
-  document.getElementById('go__back').style.display = "";
-  document.querySelector('.next').classList.remove('next1');
+
+const formIsValid = {
+  name__field: false,
+  email: false,
+  phone: false
 };
+
+name__field.addEventListener('change', (e) => {
+  if(e.target.value.trim().length > 0) formIsValid.name__field = true
+});
+
+email.addEventListener('change', (e) => {
+  if(e.target.value.trim().length > 0) formIsValid.email = true
+});
+
+phone.addEventListener('change', (e) => {
+  if(e.target.value.trim().length > 0) formIsValid.phone = true
+});
+
+const validateForm = () => {
+  const formValues = Object.values(formIsValid)
+  const valid = formValues.findIndex(value => value == false)
+
+  if(valid == -1) {
+    console.log('go go go')
+  } else { 
+    btn_next.style.display = "none";
+    alert('Form invalid')
+  }
+};
+
+
+
+  if(currentStep < 2) {
+    document.getElementById('go__back').style.display = "none";
+    document.querySelector('.next').classList.add('next1');
+  } else {
+    document.getElementById('go__back').style.display = "";
+    document.querySelector('.next').classList.remove('next1');
+  }
+
+
 
 btn_back.addEventListener('click', () => {
   console.log(currentStep);
@@ -63,12 +102,24 @@ btn_back.addEventListener('click', () => {
   console.log(currentSidebarNumber);
   console.log(currentStep);
   (currentStep == 1) ? document.getElementById('go__back').style.display = "none" : null;  
+
   if (currentStep == 3) { 
-    entfernen (); 
+   /*  finishing.prices__remove(); */
+    finishing.addon__remove(); 
   };
 });
 btn_next.addEventListener('click', () => {
   console.log(currentStep);
+  if(currentStep == 1) {
+    validateForm();
+    console.log(formIsValid);
+    if (formIsValid.name__field == true && formIsValid.email == true && formIsValid.phone == true ) {
+      console.log('go go go !!!');
+    } else {
+      currentStep = 1;
+      return;
+    }
+  }
   document.querySelector(`#sidebar_number-${currentSidebarNumber}`).classList.remove('active');
   document.querySelector(`#step${currentStep}`).style.display = 'none';
   currentStep++;
@@ -84,9 +135,10 @@ btn_next.addEventListener('click', () => {
     document.getElementById('go__back').style.display = "";
     document.querySelector('.next').classList.remove('next1');
   } else if (currentStep == 4) {
-    finishing.plan__show();
+    
     finishing.sumary();
     finishing.plan__prices99();
+    finishing.plan__show();
     finishing.prices__total();
     console.log(finishing);
   } else if (currentStep == 5) {
@@ -169,6 +221,7 @@ two.addEventListener('click', (e) => {
   document.getElementById('cp__price').innerHTML = "$20/yr";
 
   finishing.finishing__up.frequency = "(Yearly)";
+  
 });
 
 //addons (step 3) 
@@ -195,7 +248,7 @@ larger__storage.addEventListener('click', () => {
   if (larger__storage.form[0].checked == true) {
     addons__ls.style.backgroundColor = "hsl(217, 100%, 97%)";
     finishing.finishing__up.addons.push('larger storage');
-    finishing.finishing__up.frequency === "(Monthly)" ? finishing.finishing__up.addons__prices += 1 : finishing.finishing__up.addons__prices += 10;
+    finishing.finishing__up.frequency === "(Monthly)" ? finishing.finishing__up.addons__prices += 2 : finishing.finishing__up.addons__prices += 20;
     console.log("lol+larger storage");
     console.log(finishing);
   } else {
@@ -244,6 +297,7 @@ const finishing = {
   plan__show () {
     plan__name.innerHTML = `${this.finishing__up.plan} ${this.finishing__up.frequency}`;
     plan__prices.innerHTML = `${formatter.format(this.finishing__up.prices)}`;
+    console.log(this.finishing__up.prices);
     console.log(this.finishing__up.plan);
   },  
  
@@ -313,19 +367,32 @@ const finishing = {
     this.finishing__up.total__prices = this.finishing__up.addons__prices + this.finishing__up.prices;
     total__prices.innerHTML = `${formatter.format(this.finishing__up.total__prices)}`;
     this.finishing__up.frequency == "(Monthly)" ? total__frequency.innerHTML = `Total (per month)` : total__frequency.innerHTML = `Total (per year)`;
-    console.log(this.finishing__up.frequency);
     
   },
 
-      
+  addon__remove() {
+    document.querySelectorAll('.addons__selected').forEach((addon) => {
+      if (this.finishing__up.addons !== null) {
+        addon.remove();
+      }
+    });
+  },
+  
+  prices__remove() {
+    document.querySelectorAll('.addons__prices').forEach((addon) => {
+      if (this.finishing__up.prices !== null) {
+        this.finishing__up.prices = 0;
+      }
+    });
+  }
 };
  
  
+finishing.sumary();
+finishing.plan__prices99();
 finishing.plan__show();
- finishing.sumary();
- finishing.plan__prices99();
- finishing.prices__total();
- console.log(finishing);
+finishing.prices__total();
+console.log(finishing);
  
  
  
